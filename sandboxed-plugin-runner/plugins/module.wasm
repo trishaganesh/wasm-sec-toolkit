@@ -1,0 +1,5 @@
+#[no_mangle]
+pub extern "C" fn run() {
+    // Safe plugin code
+    println!("Hello from the WASM plugin!");
+}
