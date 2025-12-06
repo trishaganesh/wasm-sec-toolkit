@@ -1,4 +1,4 @@
-# 01 - WASM Sandboxed Plugin Runner
+# WASM Sandboxed Plugin Runner
 
 ## Goal
 Run untrusted WebAssembly plugins safely in a sandbox
@@ -14,6 +14,6 @@ Run untrusted WebAssembly plugins safely in a sandbox
 - **Resource limits**: Infinite loops or excessive memory usage are prevented
 
 ## Usage
-1. Compile Rust project:
+Compile Rust project:
 ```bash
 cargo build --release
