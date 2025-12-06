@@ -1,8 +1,16 @@
 use wasmtime::*;
+use wasmtime_wasi::sync::WasiCtxBuilder;
+use std::fs;
+use std::time::{Duration, Instant};
 
 fn main() -> anyhow::Result<()> {
-    println!("=== WASM Sandboxed Plugin Runner ===");
+    println!("WASM Sandboxed Plugin Runner");
 
+    //configuring the Wasmtime engine with the fuel consumption
+    let mut config = Config::new();
+    // this will enable fuel-based CPU limiting
+    config.consume_fuel(true); 
+    
     //creating the engine and store
     let engine = Engine::default();
     let mut store = Store::new(&engine, ());
