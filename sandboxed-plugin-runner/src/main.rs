@@ -30,6 +30,19 @@ fn main() -> anyhow::Result<()> {
             println!("[PLUGIN]: {}", msg);
         }
     })?;
+
+    //dynamically loading the plugins
+    let modules_path = "plugins/";
+    //defining the folder path (plugins/) where the WebAssembly plugin files are stored
+    for entry in fs::read_dir(modules_path)? {
+        /*reading all entries
+        and loops over each entry. ? propagates any errors if the folder can’t be read. */
+        let path = entry?.path();
+        //gets the full path of the current entry in the directory
+        if path.extension().map(|extension_value| extension_value == "wasm").unwrap_or(false) {
+            //checking if the file has a .wasm extension
+            let plugin_name = path.file_name().unwrap().to_string_lossy();
+            println!("Loading plugin: {}", plugin_name);
     
     //loading the WASM plugin
     let module = Module::from_file(&engine, "plugins/example.wasm")?;
