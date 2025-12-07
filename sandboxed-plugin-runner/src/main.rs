@@ -43,10 +43,23 @@ fn main() -> anyhow::Result<()> {
             //checking if the file has a .wasm extension
             let plugin_name = path.file_name().unwrap().to_string_lossy();
             println!("Loading plugin: {}", plugin_name);
-    
+
+            //loading the WebAssembly module from the file at the given path
+            let module = match Module::from_file(&engine, &path) {
+                //if the loading succeeds, then assign the module to `module`
+                Ok(loaded_module) => loaded_module,
+                //if the loading fails, print an error and skip this plugin
+                Err(load_error) => {
+                    eprintln!("Failed to load {}: {:?}", plugin_name, e);
+                    continue; //moving on to the next plugin in the loop
+                }
+            };
+
+    /*
     //loading the WASM plugin
     let module = Module::from_file(&engine, "plugins/example.wasm")?;
-
+    */
+        
     //creating an instance of the module
     let instance = Instance::new(&mut store, &module, &[])?;
 
