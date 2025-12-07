@@ -55,14 +55,30 @@ fn main() -> anyhow::Result<()> {
                 }
             };
 
+            //instantiating the WASM module using the linker
+            let instance = match linker.instantiate(&mut store, &module) {
+                //if instantiation is successful, store the resulting instance in `plugin_instance`
+                Ok(plugin_instance) => plugin_instance,
+    
+                //if instantiation fails, capture the error in `instantiation_error`
+                Err(instantiation_error) => {
+                    //print an error message including the plugin name and the error details
+                    eprintln!("Failed to instantiate {}: {:?}", plugin_name, instantiation_error);
+                    //skip this plugin and continue to the next one
+                    continue;
+                }
+            };
+
     /*
     //loading the WASM plugin
     let module = Module::from_file(&engine, "plugins/example.wasm")?;
     */
-        
+
+    /*
     //creating an instance of the module
     let instance = Instance::new(&mut store, &module, &[])?;
-
+    */
+            
     //calling the exported function 'run' if it exists
     if let Some(run_func) = instance.get_typed_func::<(), (), _>(&mut store, "run").ok() {
         println!("Running plugin...");
