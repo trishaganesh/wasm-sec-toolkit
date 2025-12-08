@@ -77,4 +77,11 @@ fn main() -> anyhow::Result<()> {
                 }
             };
 
+            
+            /*trying to get the exported function named "run" from the plugin instance
+             expect it to have no parameters and no return value: <(), ()> */
+            if let Ok(run_func) = instance.get_typed_func::<(), (), _>(&mut store, "run") {
+                //recording the current time so we can measure execution duration later
+                let execution_start = Instant::now();
 
+    
