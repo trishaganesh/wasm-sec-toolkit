@@ -55,6 +55,14 @@ fn main() -> anyhow::Result<()> {
                 }
             };
 
+            //resetting the fuel for this plugin
+            store.add_fuel(1_000_000)?; //need to check fuel units value (what is most optimal) 
+
+            //building a fresh WASI sandbox
+            let wasi = WasiCtxBuilder::new().build();
+            //attaching it to the store for isolated execution
+            store.set_wasi(wasi);
+
             //instantiating the WASM module using the linker
             let instance = match linker.instantiate(&mut store, &module) {
                 //if instantiation is successful, store the resulting instance in `plugin_instance`
