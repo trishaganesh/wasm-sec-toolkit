@@ -83,5 +83,30 @@ fn main() -> anyhow::Result<()> {
             if let Ok(run_func) = instance.get_typed_func::<(), (), _>(&mut store, "run") {
                 //recording the current time so we can measure execution duration later
                 let execution_start = Instant::now();
-
-    
+                //executing the "run" function inside the sandboxed store
+                match run_func.call(&mut store, ()) {
+                     Ok(_) => {
+                        //calculating how long the plugin took to run
+                        let elapsed_time = start.elapsed();
+                        //checking how much CPU "fuel" this plugin consumed
+                        let fuel_used = store.fuel_consumed().unwrap_or(0);
+                        //reporting success, timing, and fuel usage
+                        println!(
+                            "Plugin {} executed successfully in {:?} using {} fuel units",
+                            plugin_name, elapsed_time, fuel_used
+                        );
+                    }
+                    //if execution failed, print the error
+                    Err(e) => eprintln!("Plugin {} execution failed: {:?}", plugin_name, e),
+                }
+            //if the module doesn't export a "run" function, warn the user
+            } else {
+                eprintln!("Plugin {} does not export 'run'", plugin_name);
+            }
+        }
+    }
+    //when all plugin files have been processed, print a final summary
+    println!("=== All plugins executed ===");
+    //return success from main()
+    Ok(())
+}
