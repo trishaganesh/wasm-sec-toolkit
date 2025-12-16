@@ -6,11 +6,9 @@ use std::{
     sync::mpsc::channel,
     time::{Duration, Instant},
 };
-
 use wasmtime::*;
 use wasmtime_wasi::sync::WasiCtxBuilder;
 use std::thread;
-use std::time::{Duration, Instant};
 
 fn main() -> anyhow::Result<()> {
     println!("WASM Sandboxed Plugin Runner");
