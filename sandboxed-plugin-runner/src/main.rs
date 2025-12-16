@@ -46,6 +46,10 @@ fn main() -> anyhow::Result<()> {
     fs::create_dir_all(&plugin_folder)?; 
     //channel for watching the folder
     let (tx, rx) = channel();
+
+    //watch the folder for changes
+    let mut watcher: RecommendedWatcher = Watcher::new(tx, Duration::from_secs(1))?;
+    watcher.watch(&plugin_folder, RecursiveMode::NonRecursive)?;
     
     //defining the folder path (plugins/) where the WebAssembly plugin files are stored
     for entry in fs::read_dir(modules_path)? {
