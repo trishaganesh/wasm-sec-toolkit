@@ -17,6 +17,8 @@ fn main() -> anyhow::Result<()> {
     let mut config = Config::new();
     // this will enable fuel-based CPU limiting
     config.consume_fuel(true); 
+    //add memory for each plugin: 16MB
+    config.static_memory_maximum_size(16 * 1024 * 1024);
     
     //creating the engine and store
     let engine = Engine::default();
