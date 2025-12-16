@@ -1,6 +1,15 @@
+use anyhow::Result;
+use notify::{RecommendedWatcher, RecursiveMode, Watcher, Event};
+use std::{
+    fs,
+    path::PathBuf,
+    sync::mpsc::channel,
+    time::{Duration, Instant},
+};
+
 use wasmtime::*;
 use wasmtime_wasi::sync::WasiCtxBuilder;
-use std::fs;
+use std::thread;
 use std::time::{Duration, Instant};
 
 fn main() -> anyhow::Result<()> {
@@ -106,7 +115,7 @@ fn main() -> anyhow::Result<()> {
         }
     }
     //when all plugin files have been processed, print a final summary
-    println!("=== All plugins executed ===");
+    println!("All plugins executed");
     //return success from main()
     Ok(())
 }
