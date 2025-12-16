@@ -40,8 +40,13 @@ fn main() -> anyhow::Result<()> {
         }
     })?;
 
-    //dynamically loading the plugins
-    let modules_path = "plugins/";
+    //a folder to watch for the plugins
+    let plugin_folder = PathBuf::from("plugins/");
+    //checking to make sure it exists
+    fs::create_dir_all(&plugin_folder)?; 
+    //channel for watching the folder
+    let (tx, rx) = channel();
+    
     //defining the folder path (plugins/) where the WebAssembly plugin files are stored
     for entry in fs::read_dir(modules_path)? {
         /*reading all entries
