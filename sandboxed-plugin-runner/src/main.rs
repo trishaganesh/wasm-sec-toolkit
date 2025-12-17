@@ -50,6 +50,9 @@ fn main() -> anyhow::Result<()> {
     //watch the folder for changes
     let mut watcher: RecommendedWatcher = Watcher::new(tx, Duration::from_secs(1))?;
     watcher.watch(&plugin_folder, RecursiveMode::NonRecursive)?;
+
+    //print watching folder
+    println!("Watching folder: {:?}", plugin_folder);
     
     //defining the folder path (plugins/) where the WebAssembly plugin files are stored
     for entry in fs::read_dir(modules_path)? {
