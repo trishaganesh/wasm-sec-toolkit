@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Go WASM Image Processing Editor</title>
+</head>
+<body>
+<h1>Go and WASM Image Filter</h1>
+<!-- file input for uploading an image -->
+<input type="file" id="fileInput" accept="image/*">
+<!--canvas to display the image-->
+<canvas id="canvas"></canvas>
+<!--button to apply grayscale filter -->
+<button id="grayscaleBtn">Applying Gray</button>
+
+<script src="wasm_exec.js"></script>
+<script>
+
+const go = new Go(); // this is defined in my wasm_exec.js file from installation
+
+//load and instantiate the WebAssembly module and run it
+WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject)
+  //starts the Go WASM program
+.then(result => go.run(result.instance));
+
+//get references to HTML elements
+const fileInput = document.getElementById("fileInput");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+  //store the image data here after uploading
+let imgData;
+
+fileInput.addEventListener("change", (e) => {
+  //get the selected file
+    const file = e.target.files[0];
+  //read the file as a data URL
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      //create a new Image object
+        const img = new Image();
+        img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+          //draw the uploaded image on the canvas
+            ctx.drawImage(img, 0, 0);
+          //get the image pixel data from the canvas
+            imgData = ctx.getImageData(0, 0, img.width, img.height);
+        }
+      //set the image source to the uploaded file
+        img.src = evt.target.result;
+    }
+  //read the file as a base64 data URL
+    reader.readAsDataURL(file);
+});
+
+  //event listener for the button
+document.getElementById("grayscaleBtn").addEventListener("click", () => {
+  //but if no image uploaded, do nothing
+    if (!imgData) return;
+   //Call the Go function and updated to use the new function name exposed from Go
+    convertToGray(imgData.data, imgData.width, imgData.height);
+  //update the canvas with the new  image
+    ctx.putImageData(imgData, 0, 0);
+});
+</script>
+</body>
+</html>
