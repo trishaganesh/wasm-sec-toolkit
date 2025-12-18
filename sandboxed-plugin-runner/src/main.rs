@@ -68,6 +68,11 @@ fn main() -> anyhow::Result<()> {
         }
     }
 }
+
+//a function to scan the folder and run all the .wasm plugins
+fn scan_and_run_plugins(engine: &Engine, store: &mut Store<()>, linker: &Linker<()>, folder: &PathBuf) -> Result<()> {
+    for entry in fs::read_dir(folder)? {
+        let path = entry?.path();
     
     //defining the folder path (plugins/) where the WebAssembly plugin files are stored
     for entry in fs::read_dir(modules_path)? {
