@@ -53,6 +53,21 @@ fn main() -> anyhow::Result<()> {
 
     //print watching folder
     println!("Watching folder: {:?}", plugin_folder);
+
+    //infinite loop to scan and run plugins, reloads, then re-executes when plugin folder changes
+    loop {
+        //scan and run plugins initially or on folder change
+        scan_and_run_plugins(&engine, &mut store, &linker, &plugin_folder)?;
+
+        //wait for changes
+        match rx.recv() {
+            Ok(Event { .. }) => {
+                println!("Plugin folder changed, reloading the plugins...");
+            }
+            Err(e) => eprintln!("Watch error: {:?}", e),
+        }
+    }
+}
     
     //defining the folder path (plugins/) where the WebAssembly plugin files are stored
     for entry in fs::read_dir(modules_path)? {
