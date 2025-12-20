@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Go WASM Tetris</title>
+</head>
+<body>
+  <!--the Canvas element where the Tetris game will be rendered -->
+  <canvas id="game" width="300" height="600"></canvas>
+
+  <!--we load the Go WebAssembly support script provided by Go -->
+  <script src="wasm_exec.js"></script>
+  <script>
+    //then create a new Go runtime instance
+    const go = new Go();
+
+    //get the canvas element and store its 2D rendering context globally
+    const canvas = document.getElementById("game");
+    window.ctx = canvas.getContext("2d");
+
+    /*then load and instantiate the compiled Go WASM module
+    then run it inside the Go runtime */
+    WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject)
+      .then(res => go.run(res.instance));
+  </script>
+</body>
+</html>
