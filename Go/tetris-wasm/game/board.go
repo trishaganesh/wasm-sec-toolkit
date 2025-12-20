@@ -39,7 +39,7 @@ can no longer move down */
 
 func (b *Board) Lock(p *Piece) {
 	for _, c := range p.Cells() {
-		b.Cells[c.Y][c.X] = p.ID
+		b.Cells[c.Row][c.Col] = p.ID
 	}
 }
 
