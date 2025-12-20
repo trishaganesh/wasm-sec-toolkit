@@ -3,7 +3,7 @@ package game
 /*Vec represents a 2D integer vector
 It is used for board coordinates and relative block offsets */
 type Vec struct {
-	X, Y int
+	Col, Row int
 }
 
 /*Piece represents a falling Tetris piece.
@@ -42,8 +42,8 @@ func (p *Piece) Cells() []Vec {
 	cells := make([]Vec, len(p.Blocks))
 	for i, b := range p.Blocks {
 		cells[i] = Vec{
-			X: p.Pos.X + b.X,
-			Y: p.Pos.Y + b.Y,
+			Col: p.Pos.Col + b.Col,
+			Row: p.Pos.Row + b.Row,
 		}
 	}
 	return cells
