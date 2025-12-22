@@ -1,0 +1,11 @@
+name = "wasm-waf"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[[wasm_modules]]
+name = "WAF_WASM"
+path = "../dist/wasm_waf.wasm"
+
+[[kv_namespaces]]
+binding = "RULES_JSON"
+id = "RULES_JSON_ID" # Upload rules JSON to KV
