@@ -24,3 +24,5 @@ pub fn load_rules(json_rules: &str) -> JsValue {
    //if JSON is invalid, fallback to empty vector
     let rules: Vec<Rule> = serde_json::from_str(json_rules).unwrap_or(vec![]);
     //convert Rust Vec<Rule> to JsValue for JS consumption
+    JsValue::from_serde(&rules).unwrap()
+}
