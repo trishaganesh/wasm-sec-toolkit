@@ -23,3 +23,5 @@ const payloads = [
   "DROP TABLE users;",       //the SQL injection
   "<script>alert(1)</script>" //XSS attempt
 ];
+
+//loop through each payload and check if it is allowed
