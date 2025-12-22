@@ -21,4 +21,4 @@ this returns: JsValue (serializable to JavaScript array of rules) */
 #[wasm_bindgen]
 pub fn load_rules(json_rules: &str) -> JsValue {
     //then deserialize JSON string into Vec<Rule>
-   
+   //if JSON is invalid, fallback to empty vector
