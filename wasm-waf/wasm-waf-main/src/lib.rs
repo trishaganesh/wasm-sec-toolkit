@@ -32,3 +32,5 @@ payload: the string to inspect (e.g., request body)
 json_rules: JSON string representing an array of Rule objects
 returns: true if payload is allowed, false if it matches any blocking rule
 */
+#[wasm_bindgen]
+pub fn inspect_payload(payload: &str, json_rules: &str) -> bool {
