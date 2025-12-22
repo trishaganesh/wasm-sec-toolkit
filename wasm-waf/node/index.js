@@ -16,3 +16,10 @@ const {
 
 //load security rules from a JSON file and each rule should have name and pattern fields
 const rules = fs.readFileSync("../rules/rules.json", "utf8");
+
+//example incoming request/payloads to inspect
+const payloads = [
+  "Hello world",             //the safe payload
+  "DROP TABLE users;",       //the SQL injection
+  "<script>alert(1)</script>" //XSS attempt
+];
