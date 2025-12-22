@@ -19,3 +19,5 @@ const payloads = [
 
 //we inspect each payload using the WASM WAF
 for (const payload of payloads) {
+  //then return true if allowed, false if blocked
+  const allowed = inspect_payload(payload, rules);
