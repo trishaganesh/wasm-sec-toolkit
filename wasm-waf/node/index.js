@@ -15,3 +15,4 @@ const {
 } = wasm.instance.exports;
 
 //load security rules from a JSON file and each rule should have name and pattern fields
+const rules = fs.readFileSync("../rules/rules.json", "utf8");
