@@ -41,4 +41,9 @@ pub fn inspect_payload(payload: &str, json_rules: &str) -> bool {
     //iterate through each rule
     for rule in rules.iter() {
         //compile the regex pattern from the rule
-        let re = Regex::new(&rule.pattern).unwrap();
+        let reg = Regex::new(&rule.pattern).unwrap();
+        //if payload matches the pattern, block it
+        if reg.is_match(payload) {
+            return false; //this is blocked
+        }
+    }
