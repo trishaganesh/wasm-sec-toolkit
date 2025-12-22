@@ -22,3 +22,4 @@ this returns: JsValue (serializable to JavaScript array of rules) */
 pub fn load_rules(json_rules: &str) -> JsValue {
     //then deserialize JSON string into Vec<Rule>
    //if JSON is invalid, fallback to empty vector
+    let rules: Vec<Rule> = serde_json::from_str(json_rules).unwrap_or(vec![]);
