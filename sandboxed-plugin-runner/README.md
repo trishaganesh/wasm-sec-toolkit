@@ -9,7 +9,7 @@ Safely execute untrusted WebAssembly (WASM) plugins inside a controlled sandbox 
 - Restricting the capabilities (no network, the memory limits can be configured, the CPU timeouts can be possible)
 
 ## Security
-- **Capability-based security**: Only allowed functions are accessible
+- **Capability-based security**: Plugins only have access to the functions and resources explicitly granted by the host. There is no ambient authority—if a capability is not provided, it cannot be used.
 - **Deterministic execution**: There's no undefined behavior or arbitrary system calls
 - **Resource limits**: Infinite loops or excessive memory usage are prevented
 
