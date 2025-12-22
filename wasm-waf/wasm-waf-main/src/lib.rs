@@ -47,3 +47,6 @@ pub fn inspect_payload(payload: &str, json_rules: &str) -> bool {
             return false; //this is blocked
         }
     }
+    //if no rules match, allow the payload
+    true
+}
