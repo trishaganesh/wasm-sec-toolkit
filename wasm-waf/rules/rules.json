@@ -1,0 +1,5 @@
+[
+    {"name": "SQL Injection", "pattern": "(?i)(select\\s+.*from|union\\s+select|drop\\s+table|--|;|'.*'='.*')"},
+    {"name": "XSS", "pattern": "(?i)(<script>|javascript:|onerror=|onload=)"},
+    {"name": "Path Traversal", "pattern": "(\\.\\./|\\.\\.\\\\)"}
+]
