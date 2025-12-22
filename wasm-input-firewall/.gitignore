@@ -1,14 +1,14 @@
-# Rust
+#this is for Rust
 /wasm-firewall/target/
 
-# WASM output
+#this is for the WASM output
 /dist/
 
-# Node
+#for node
 /node/node_modules/
 
-# OS
+#the OS
 .DS_Store
 
-# Logs
+#any logs
 *.log
