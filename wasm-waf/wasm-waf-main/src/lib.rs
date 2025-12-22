@@ -11,4 +11,5 @@ then pattern: regex pattern to match against payloads */
 #[derive(Deserialize)]
 pub struct Rule {
     pub name: String,
+    pub pattern: String,
 }
