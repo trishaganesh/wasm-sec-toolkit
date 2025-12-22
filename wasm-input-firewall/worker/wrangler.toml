@@ -1,0 +1,8 @@
+name = "wasm-input-firewall"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[[wasm_modules]]
+name = "FIREWALL_WASM"
+path = "../dist/wasm_firewall.wasm"
+
