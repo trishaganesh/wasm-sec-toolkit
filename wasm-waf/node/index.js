@@ -8,3 +8,8 @@ const wasmBuffer = fs.readFileSync("../dist/wasm_waf.wasm");
 empty imports object because the module is self-contained */
 const wasm = await WebAssembly.instantiate(wasmBuffer, {});
 
+/*destructure the exported function inspect_payload from WASM
+this function checks payloads against a JSON set of rules */
+const { 
+  inspect_payload 
+} = wasm.instance.exports;
