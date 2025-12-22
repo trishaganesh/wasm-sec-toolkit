@@ -28,3 +28,7 @@ const payloads = [
 for (const payload of payloads) {
   //call WASM function: returns true if allowed, false if blocked
   const allowed = inspect_payload(payload, rules);
+
+//we can log the result
+  console.log(`${payload} => ${allowed ? "Allowed" : "Blocked"}`);
+}
