@@ -12,7 +12,7 @@ const rules = await Deno.readTextFile("../rules/rules.json");
 
 //here's a sample payload simulating incoming requests
 const payloads = [
-  "Hello world",              //benign input
+  "Hello world",              //the input
   "DROP TABLE users;",        //the SQL injection attempt
   "<script>alert(1)</script>" //XSS attempt
 ];
