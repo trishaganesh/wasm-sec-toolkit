@@ -1,3 +1,5 @@
+//more info at: https://developers.cloudflare.com/workers/wrangler/configuration/
+
 export default {
   /* workers entry point
   and this function runs for every incoming HTTP request */
