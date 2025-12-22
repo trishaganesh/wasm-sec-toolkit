@@ -38,3 +38,4 @@ pub fn inspect_payload(payload: &str, json_rules: &str) -> bool {
     fallback to empty vector if parsing fails
     */
     let rules: Vec<Rule> = serde_json::from_str(json_rules).unwrap_or(vec![]);
+    //iterate through each rule
