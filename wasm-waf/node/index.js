@@ -13,3 +13,5 @@ this function checks payloads against a JSON set of rules */
 const { 
   inspect_payload 
 } = wasm.instance.exports;
+
+//load security rules from a JSON file and each rule should have name and pattern fields
