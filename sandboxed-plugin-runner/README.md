@@ -13,11 +13,11 @@ Safely execute untrusted WebAssembly (WASM) plugins inside a controlled sandbox 
 - **Deterministic execution**: WebAssembly enforces a well-defined execution model with no undefined behavior, raw system calls, or arbitrary memory access, making plugin behavior predictable and auditable.
 - **Resource limits**: The runtime enforces:
 
-CPU limits using Wasmtime fuel metering to prevent infinite loops or denial-of-service attacks
+                          CPU limits using Wasmtime fuel metering to prevent infinite loops or denial-of-service attacks
 
-Memory limits by configuring maximum linear memory per plugin
+                          Memory limits by configuring maximum linear memory per plugin
 
-Execution time measurement to detect slow or abusive plugins
+                          Execution time measurement to detect slow or abusive plugins
 
 ## Usage
 Compile Rust project:
