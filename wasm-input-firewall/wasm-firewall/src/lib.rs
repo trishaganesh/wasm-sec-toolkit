@@ -45,3 +45,18 @@ pub fn sanitize_url(url: &str) -> String {
     //lastly, we return sanitized URL
     clean
 }
+
+/* but we detect common SQL injection patterns in user input
+returns true if suspicious SQL patterns are found
+then intended for early input filtering before backend processing */
+#[wasm_bindgen]
+pub fn detect_sql_injection(input: &str) -> bool {
+    // List of known SQL injection indicators
+    let patterns = [
+        r"(?i)select\s+.*from", //SELECT ... FROM (case-insensitive)
+        r"(?i)union\s+select",  //UNION SELECT attacks
+        r"(?i)drop\s+table",    //DROP TABLE attempts
+        r"--",                  //SQL comment injection
+        r";",                   //this is statement chaining
+        r"' OR '1'='1",         //the tautology attack
+    ];
