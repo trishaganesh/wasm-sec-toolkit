@@ -23,3 +23,9 @@ Safely execute untrusted WebAssembly (WASM) plugins inside a controlled sandbox 
 Compile Rust project:
 ```bash
 cargo build --release
+
+#### Add plugins
+
+Place compiled .wasm files into the plugins/ directory
+
+Each plugin must export a run function with no parameters and no return value
