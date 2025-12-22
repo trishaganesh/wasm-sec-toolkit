@@ -60,3 +60,16 @@ pub fn detect_sql_injection(input: &str) -> bool {
         r";",                   //this is statement chaining
         r"' OR '1'='1",         //the tautology attack
     ];
+
+    //we need to check each pattern against the input
+    for p in patterns {
+        let re = Regex::new(p).unwrap(); //then the static patterns are safe to unwrap
+        if re.is_match(input) {
+            //in case suspicious SQL detected
+            return true;
+        }
+    }
+
+    //there are no injection patterns found
+    false
+}
