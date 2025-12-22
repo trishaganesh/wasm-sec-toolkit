@@ -33,3 +33,15 @@ pub fn sanitize_url(url: &str) -> String {
         "<", ">",      //the HTML tags
         "\"", "'",     //the attribute injection
     ];
+
+//but then we need to create a mutable copy of the input
+    let mut clean = url.to_string();
+
+    //then we remove all forbidden patterns from the URL
+    for f in forbidden {
+        clean = clean.replace(f, "");
+    }
+
+    //lastly, we return sanitized URL
+    clean
+}
