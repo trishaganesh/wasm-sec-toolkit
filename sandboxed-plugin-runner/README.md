@@ -1,7 +1,7 @@
 # WASM Sandboxed Plugin Runner
 
 ## Goal
-Run untrusted WebAssembly plugins safely in a sandbox
+Safely execute untrusted WebAssembly (WASM) plugins inside a controlled sandbox while protecting the host system from malicious or faulty code.
 
 ## How
 - Using **Wasmtime** to execute `.wasm` modules
