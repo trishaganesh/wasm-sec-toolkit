@@ -20,3 +20,16 @@ pub fn validate_email(email: &str) -> bool {
     //need to check if the input email matches the pattern
     reg.is_match(email)
 }
+
+/* we need to sanitize URLs by removing potentially dangerous substrings
+this helps prevent XSS and script injection attacks
+before the URL reaches backend services */
+#[wasm_bindgen]
+pub fn sanitize_url(url: &str) -> String {
+    // Common attack vectors and unsafe characters
+    let forbidden = [
+        "javascript:", //the JS execution URLs
+        "data:",       //the data URIs (can embed scripts)
+        "<", ">",      //the HTML tags
+        "\"", "'",     //the attribute injection
+    ];
