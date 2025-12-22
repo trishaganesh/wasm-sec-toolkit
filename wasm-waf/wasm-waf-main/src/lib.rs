@@ -5,6 +5,7 @@ use regex::Regex;
 //serde for JSON serialization/deserialization
 use serde::Deserialize;
 
+// a Struct representing a security rule
 #[derive(Deserialize)]
 pub struct Rule {
     pub name: String,
