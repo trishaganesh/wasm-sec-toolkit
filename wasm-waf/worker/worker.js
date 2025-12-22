@@ -24,7 +24,7 @@ export default {
       return new Response("Blocked by WASM WAF", { status: 403 });
     }
 
-    //lasyl, allow request if no rules match
+    //lastly, allow request if no rules match
     return new Response("Request allowed");
   }
 };
