@@ -21,3 +21,6 @@ const payloads = [
 for (const payload of payloads) {
   //then return true if allowed, false if blocked
   const allowed = inspect_payload(payload, rules);
+//then lastly we output the inspection result
+  console.log(`${payload} => ${allowed ? "Allowed" : "Blocked"}`);
+}
