@@ -39,3 +39,6 @@ pub fn inspect_payload(payload: &str, json_rules: &str) -> bool {
     */
     let rules: Vec<Rule> = serde_json::from_str(json_rules).unwrap_or(vec![]);
     //iterate through each rule
+    for rule in rules.iter() {
+        //compile the regex pattern from the rule
+        let re = Regex::new(&rule.pattern).unwrap();
