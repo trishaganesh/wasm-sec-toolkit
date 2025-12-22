@@ -6,7 +6,8 @@ use regex::Regex;
 use serde::Deserialize;
 
 // a Struct representing a security rule
-/* first off the - `name`: human-readable identifier for the rule
+/* first off the name: human-readable identifier for the rule
+then pattern: regex pattern to match against payloads */
 #[derive(Deserialize)]
 pub struct Rule {
     pub name: String,
