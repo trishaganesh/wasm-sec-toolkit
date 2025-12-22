@@ -16,3 +16,6 @@ const payloads = [
   "DROP TABLE users;",        //the SQL injection attempt
   "<script>alert(1)</script>" //XSS attempt
 ];
+
+//we inspect each payload using the WASM WAF
+for (const payload of payloads) {
