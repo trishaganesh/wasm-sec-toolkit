@@ -1,4 +1,4 @@
 [package]
 name = "wasm_waf"
-
+version = "0.1.0"
 
