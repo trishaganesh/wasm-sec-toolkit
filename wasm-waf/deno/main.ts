@@ -9,3 +9,10 @@ const { inspect_payload } = wasm.instance.exports as any;
 
 //we then load WAF rules from a JSON file
 const rules = await Deno.readTextFile("../rules/rules.json");
+
+//here's a sample payload simulating incoming requests
+const payloads = [
+  "Hello world",              //benign input
+  "DROP TABLE users;",        //the SQL injection attempt
+  "<script>alert(1)</script>" //XSS attempt
+];
