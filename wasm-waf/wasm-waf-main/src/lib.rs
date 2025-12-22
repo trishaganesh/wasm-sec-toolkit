@@ -26,3 +26,9 @@ pub fn load_rules(json_rules: &str) -> JsValue {
     //convert Rust Vec<Rule> to JsValue for JS consumption
     JsValue::from_serde(&rules).unwrap()
 }
+
+/*inspect a payload against a set of rules
+payload: the string to inspect (e.g., request body)
+json_rules: JSON string representing an array of Rule objects
+returns: true if payload is allowed, false if it matches any blocking rule
+*/
