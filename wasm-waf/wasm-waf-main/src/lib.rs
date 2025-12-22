@@ -1,5 +1,6 @@
 //import wasm-bindgen to expose Rust functions to JavaScript
 use wasm_bindgen::prelude::*;
+//the regex library for pattern matching (used to match rules against payloads)
 use regex::Regex;
 use serde::Deserialize;
 
