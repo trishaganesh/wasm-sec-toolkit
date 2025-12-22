@@ -13,3 +13,8 @@ pub struct Rule {
     pub name: String,
     pub pattern: String,
 }
+
+/* then we Load a JSON string of rules and return them as a JsValue
+the  this function is exposed to JavaScript via wasm-bindgen
+json_rules: JSON array of objects, each with name and pattern
+this returns: JsValue (serializable to JavaScript array of rules) */
