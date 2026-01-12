@@ -34,3 +34,7 @@ pub fn hash_password(password: &str, salt: &str) -> String {
      /* Number of iterations (time cost)
       Higher values increase CPU work for attackers */
         time_cost: 3,
+
+     /* And the degree of parallelism (number of lanes/threads)
+        In WASM, true parallelism depends on the runtime environment */
+        lanes: 4,
