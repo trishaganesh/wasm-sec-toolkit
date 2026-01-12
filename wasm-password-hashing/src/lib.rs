@@ -30,3 +30,7 @@ pub fn hash_password(password: &str, salt: &str) -> String {
      /* Memory cost in kilobytes (64 MB)
         Higher memory cost increases resistance to GPU/ASIC attacks */
         mem_cost: 65536,
+
+     /* Number of iterations (time cost)
+      Higher values increase CPU work for attackers */
+        time_cost: 3,
