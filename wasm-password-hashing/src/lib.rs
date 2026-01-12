@@ -26,3 +26,7 @@ pub fn hash_password(password: &str, salt: &str) -> String {
      /*Argon2id is recommended for password hashing
         Combines resistance to GPU attacks (Argon2i)
         and side-channel resistance (Argon2d) */
+
+     /* Memory cost in kilobytes (64 MB)
+        Higher memory cost increases resistance to GPU/ASIC attacks */
+        mem_cost: 65536,
