@@ -18,3 +18,11 @@ Parameters:
 - A PHC-formatted Argon2 hash string containing:
   algorithm, version, parameters, salt, and hash
 */
+#[wasm_bindgen]
+pub fn hash_password(password: &str, salt: &str) -> String {
+    // Configure Argon2 parameters
+    let config = Config {
+
+     /*Argon2id is recommended for password hashing
+        Combines resistance to GPU attacks (Argon2i)
+        and side-channel resistance (Argon2d) */
