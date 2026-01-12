@@ -1,0 +1,13 @@
+[package]
+name = "wasm_password_hash"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+argon2 = "0.4"       #for the Argon2 hashing
+#OR
+#scrypt = "0.8"     #checking with scrypt 
