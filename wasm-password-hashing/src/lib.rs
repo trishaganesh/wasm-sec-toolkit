@@ -38,3 +38,12 @@ pub fn hash_password(password: &str, salt: &str) -> String {
      /* And the degree of parallelism (number of lanes/threads)
         In WASM, true parallelism depends on the runtime environment */
         lanes: 4,
+
+     /*So then generate an encoded hash string.
+    the output will include all parameters needed for verification */
+    argon2::hash_encoded(
+        password.as_bytes(),
+        salt.as_bytes(),
+        &config
+    ).unwrap() //this is for unwrap which is safe here if inputs are validated upstream
+}
